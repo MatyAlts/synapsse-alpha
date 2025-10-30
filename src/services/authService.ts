@@ -6,15 +6,40 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
+  phone: string;
+  address: string;
+  city: string;
+  province: string;
+  postalCode: string;
 }
 
 export interface AuthResponse {
   token: string;
   email: string;
   isAdmin: boolean;
+  firstName: string;
+  lastName: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  province?: string;
+  postalCode?: string;
+}
+
+export interface StoredUser {
+  email: string;
+  isAdmin: boolean;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  address: string;
+  city: string;
+  province: string;
+  postalCode: string;
 }
 
 export const authService = {
@@ -23,7 +48,7 @@ export const authService = {
   },
 
   async register(data: RegisterRequest): Promise<AuthResponse> {
-    return apiPost<AuthResponse>('/api/auth/register', data);
+    return apiPost<AuthResponse>('/api/auth/register', { ...data, admin: false });
   },
 
   saveToken(token: string) {
@@ -38,11 +63,11 @@ export const authService = {
     localStorage.removeItem('authToken');
   },
 
-  saveUser(user: { email: string; isAdmin: boolean }) {
+  saveUser(user: StoredUser) {
     localStorage.setItem('user', JSON.stringify(user));
   },
 
-  getUser(): { email: string; isAdmin: boolean } | null {
+  getUser(): StoredUser | null {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   },

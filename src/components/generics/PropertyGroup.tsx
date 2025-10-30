@@ -6,18 +6,14 @@ interface PropertyGroupProps{
 }
 export default function PropertyGroup({img, text, img2}: PropertyGroupProps){
     return(
-        <div className="flex flex-row items-center justify-between px-2 shadow-lg rounded-full ">
-            <div>
-                <Image src={img} width={28} height={28} alt={text ?? "icon"} className=""/>
-            </div>
-            <div>
-                <p className="text-xs font-light text-[#535657]">{text}</p>
-            </div>
-            {img2 &&(
+        <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-full bg-white/80 border border-green-100 shadow-sm">
+            <Image src={img} width={28} height={28} alt={text ?? "icon"} />
+            <p className="text-xs font-medium text-[#535657] text-center flex-1 px-1">{text}</p>
+            {img2 ? (
                 <Image src={img2} width={20} height={20} alt={`${text ?? "icon"}-extra`} className="px-1"/>
+            ) : (
+                <span className="w-5" />
             )}
-            
-            
         </div>
     )
 }

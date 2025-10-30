@@ -23,7 +23,7 @@ export interface FormData{
   lastName: string,
   address: string,
   city: string,
-  state: string,
+  province: string,
   zipCode: string
 }
 export interface UserProfile {
@@ -33,7 +33,7 @@ export interface UserProfile {
   phone: string;
   address: string;
   city: string;
-  state: string;
+  province: string;
   zipCode: string;
 }
 

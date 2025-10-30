@@ -46,7 +46,7 @@ public class AuthController {
                         .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                         .toList());
         String token = jwtService.generateToken(userDetails, buildExtraClaims(user));
-        return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getRoles().contains(Role.ADMIN)));
+        return ResponseEntity.ok(buildAuthResponse(user, token));
     }
 
     @PostMapping("/login")
@@ -57,7 +57,7 @@ public class AuthController {
             );
             User user = userService.findByEmail(request.email());
             String token = jwtService.generateToken((UserDetails) authentication.getPrincipal(), buildExtraClaims(user));
-            return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getRoles().contains(Role.ADMIN)));
+            return ResponseEntity.ok(buildAuthResponse(user, token));
         } catch (BadCredentialsException ex) {
             throw new BadCredentialsException("Credenciales inválidas");
         }
@@ -66,6 +66,23 @@ public class AuthController {
     private Map<String, Object> buildExtraClaims(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", user.getRoles());
+        claims.put("firstName", user.getFirstName());
+        claims.put("lastName", user.getLastName());
         return claims;
+    }
+
+    private AuthResponse buildAuthResponse(User user, String token) {
+        return new AuthResponse(
+                token,
+                user.getEmail(),
+                user.getRoles().contains(Role.ADMIN),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getAddress(),
+                user.getCity(),
+                user.getProvince(),
+                user.getPostalCode()
+        );
     }
 }

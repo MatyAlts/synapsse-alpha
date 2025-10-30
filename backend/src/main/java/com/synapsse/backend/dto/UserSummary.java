@@ -8,6 +8,8 @@ import java.util.Set;
 public record UserSummary(
         Long id,
         String email,
+        String firstName,
+        String lastName,
         Set<Role> roles,
         Instant createdAt
 ) {}
