@@ -124,7 +124,7 @@ export default function ProductsSection({ searchResults, isSearching }: Products
 
     return(
         <div className="flex flex-col">
-            <div className="grid grid-cols-2 relative bg-white z-10 md:grid-cols-4 xl:grid-cols-5 gap-10 py-4 px-10 items-end justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 relative bg-white z-10 gap-4 md:gap-6 lg:gap-10 py-4 px-4 md:px-10 items-end justify-center">
                 {displayProducts.map((p)=>(
                     <ProductCard 
                         id={p.id.toString()}
@@ -139,7 +139,8 @@ export default function ProductsSection({ searchResults, isSearching }: Products
             
             {/* Paginación - solo mostrar si no hay búsqueda activa */}
             {searchResults === null || searchResults === undefined ? (
-                <div className="flex items-center justify-center gap-4 py-8">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 py-6 md:py-8 bg-white">
+                    <div className="flex items-center gap-2 md:gap-4">
                     <button
                         onClick={handlePreviousPage}
                         disabled={currentPage === 0}
@@ -152,7 +153,14 @@ export default function ProductsSection({ searchResults, isSearching }: Products
                         <FiChevronLeft size={20} />
                     </button>
 
-                    {renderPageNumbers()}
+                    <div className="hidden md:flex gap-2">
+                        {renderPageNumbers()}
+                    </div>
+                    
+                    {/* Número de página actual en mobile */}
+                    <div className="md:hidden text-[#535657] text-sm">
+                        Página {currentPage + 1} de {totalPages}
+                    </div>
 
                     <button
                         onClick={handleNextPage}
@@ -165,8 +173,9 @@ export default function ProductsSection({ searchResults, isSearching }: Products
                     >
                         <FiChevronRight size={20} />
                     </button>
+                    </div>
 
-                    <span className="text-[#768386] text-sm ml-4">
+                    <span className="text-[#768386] text-xs md:text-sm">
                         Mostrando {currentPage * pageSize + 1} - {Math.min((currentPage + 1) * pageSize, totalElements)} de {totalElements} productos
                     </span>
                 </div>

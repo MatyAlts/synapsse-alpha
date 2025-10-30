@@ -85,8 +85,8 @@ export default function SearchBar({ onSearchResults, onSearchStart, onClearSearc
   };
 
   return (
-    <div className="sticky top-0 w-full p-4 mt-5 z-30 ">
-      <div className="w-[95%] mx-auto">
+    <div className="sticky top-0 w-full p-2 md:p-4 mt-2 md:mt-5 z-30 bg-backdrop/60 backdrop-blur-md">
+      <div className="w-full md:w-[95%] mx-auto">
         <div
           className={`
             relative bg-white/60 backdrop-blur-lg rounded-full 
@@ -95,10 +95,10 @@ export default function SearchBar({ onSearchResults, onSearchStart, onClearSearc
             ${isFocused ? 'shadow-2xl scale-[1.02] ring-2 ring-green-400/40' : ''}
           `}
         >
-          <div className="flex items-center gap-3 px-6 py-2">
+          <div className="flex items-center gap-2 md:gap-3 px-3 md:px-6 py-2">
             <Search 
               className={`
-                w-5 h-5 text-green-600 flex-shrink-0 
+                w-4 h-4 md:w-5 md:h-5 text-green-600 flex-shrink-0 
                 transition-transform duration-300
                 ${isFocused ? 'scale-110' : ''}
               `}
@@ -114,32 +114,32 @@ export default function SearchBar({ onSearchResults, onSearchStart, onClearSearc
               placeholder="Busca tu producto ideal..."
               className="
                 flex-1 bg-transparent border-none outline-none
-                py-3 text-[#2f3031] text-base font-thin
+                py-2 md:py-3 text-sm md:text-base text-[#2f3031] font-thin
                 placeholder:text-[#535657] placeholder:font-light
               "
             />
             
             <button
               onClick={handleSearch}
-              className=" cursor-pointer
+              className="cursor-pointer
                 bg-green-600
                 hover:bg-green-700
                 text-white text-sm
-                px-8 py-3 rounded-full
+                px-4 md:px-8 py-2 md:py-3 rounded-full
                 transition-all duration-300
                 hover:shadow-lg hover:scale-105
                 active:scale-95
                 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2
               "
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
         </div>
 
         {/* Sugerencias populares */}
-        <div className="mt-6 flex flex-row items-baseline gap-3">
-          <p className="text-sm text-[#535657] mb-3">Búsquedas populares:</p>
+        <div className="mt-4 md:mt-6 flex flex-col md:flex-row items-baseline gap-2 md:gap-3">
+          <p className="text-xs md:text-sm text-[#535657] mb-2 md:mb-3">Búsquedas populares:</p>
           <div className="flex flex-wrap justify-center gap-2">
             {['Sérum facial', 'Contorno de ojos', 'Hidratación', 'Anti-edad'].map((tag) => (
               <button

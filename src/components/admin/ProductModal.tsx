@@ -96,10 +96,10 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-          <h2 className="text-2xl font-semibold text-[#2f3031]">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-2 md:p-4">
+      <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[95vh] md:max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
+          <h2 className="text-lg md:text-2xl font-semibold text-[#2f3031]">
             {product ? "Editar Producto" : "Nuevo Producto"}
           </h2>
           <button
@@ -110,7 +110,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-4 md:p-6 space-y-3 md:space-y-4">
           {error && (
             <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
               {error}
@@ -119,7 +119,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
 
           {/* Nombre */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
               Nombre del Producto *
             </label>
             <input
@@ -128,14 +128,14 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               placeholder="Ej: Crema Restauradora"
             />
           </div>
 
           {/* Descripción */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
               Descripción *
             </label>
             <textarea
@@ -144,15 +144,15 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
               onChange={handleChange}
               required
               rows={3}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+              className="w-full px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
               placeholder="Descripción detallada del producto"
             />
           </div>
 
           {/* Precio y Stock */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                 Precio ($) *
               </label>
               <input
@@ -163,12 +163,12 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
                 required
                 min="0"
                 step="0.01"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 placeholder="0.00"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                 Stock *
               </label>
               <input
@@ -178,7 +178,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
                 onChange={handleChange}
                 required
                 min="0"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 placeholder="0"
               />
             </div>
@@ -186,7 +186,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
 
           {/* URL de Imagen */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
               URL de Imagen *
             </label>
             <input
@@ -195,7 +195,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
               value={formData.imageUrl}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               placeholder="/producto1.png"
             />
             {formData.imageUrl && (
@@ -203,7 +203,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
                 <img
                   src={formData.imageUrl}
                   alt="Preview"
-                  className="h-32 w-32 object-contain rounded-lg border border-gray-200"
+                  className="h-24 w-24 md:h-32 md:w-32 object-contain rounded-lg border border-gray-200"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/placeholder.png';
                   }}
@@ -214,7 +214,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
 
           {/* Categorías */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
               Categorías
             </label>
             <div className="flex gap-2 mb-2">
@@ -223,13 +223,13 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
                 value={categoryInput}
                 onChange={(e) => setCategoryInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddCategory())}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="flex-1 px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 placeholder="Agregar categoría"
               />
               <button
                 type="button"
                 onClick={handleAddCategory}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                className="px-3 md:px-4 py-2 text-sm md:text-base bg-green-600 text-white rounded-lg hover:bg-green-700 transition whitespace-nowrap"
               >
                 Agregar
               </button>
@@ -254,18 +254,18 @@ export default function ProductModal({ isOpen, onClose, onSuccess, product }: Pr
           </div>
 
           {/* Botones */}
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-2 md:gap-3 pt-3 md:pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
+              className="flex-1 px-3 md:px-4 py-2 text-sm md:text-base border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-3 md:px-4 py-2 text-sm md:text-base bg-green-600 text-white rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Guardando..." : (product ? "Actualizar" : "Crear")}
             </button>

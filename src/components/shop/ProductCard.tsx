@@ -37,10 +37,10 @@ export default function ProductCard({id, title, description, price, img}: Produc
   
   
   return (
-    <div className="flex flex-col p-3 
+    <div className="flex flex-col p-2 md:p-3 
         bg-neutral-100
         border border-white 
-        shadow-[12px_17px_20px_rgba(0,0,0,0.22)] 
+        shadow-[8px_12px_15px_rgba(0,0,0,0.18)] md:shadow-[12px_17px_20px_rgba(0,0,0,0.22)] 
         backdrop-blur-[6px]
         rounded-[17px] 
         text-center 
@@ -55,11 +55,11 @@ export default function ProductCard({id, title, description, price, img}: Produc
       ">
       <div
         className="
-        flex flex-row
-        p-5 
+        flex flex-col sm:flex-row
+        p-3 md:p-5 
         bg-neutral-100
         border border-white 
-        shadow-[12px_17px_51px_rgba(0,0,0,0.22)] 
+        shadow-[8px_12px_15px_rgba(0,0,0,0.18)] md:shadow-[12px_17px_51px_rgba(0,0,0,0.22)] 
         backdrop-blur-[6px]
         rounded-[17px] 
         text-center 
@@ -74,9 +74,9 @@ export default function ProductCard({id, title, description, price, img}: Produc
         
       "
       >
-        <img src={img} alt="" className="relative left-5" />
-        <div className="text-end">
-          <p className="text-[#2f3031] font-medium text-start text-lg">
+        <img src={img} alt="" className="relative sm:left-5 w-full sm:w-auto max-w-[120px] mx-auto sm:mx-0" />
+        <div className="text-center sm:text-end mt-2 sm:mt-0">
+          <p className="text-[#2f3031] font-medium text-start text-sm md:text-lg">
             <span>
               
             </span>
@@ -87,10 +87,10 @@ export default function ProductCard({id, title, description, price, img}: Produc
         
       </div>
       <div className="flex flex-row items-center justify-between pt-2 w-[90%] mx-auto">
-        <button onClick={handleAddToCart} className="bg-lime-300 text-sm px-2 py-1 text-[#2f3031] rounded-full shadow-lg font-light cursor-pointer hover:scale-110 transition-all duration-300">
+        <button onClick={handleAddToCart} className="bg-lime-300 text-xs md:text-sm px-3 md:px-2 py-1.5 md:py-1 text-[#2f3031] rounded-full shadow-lg font-light cursor-pointer hover:scale-110 transition-all duration-300">
           Comprar
         </button>
-        <p className="text-[#2f3031] font-medium text-lg">${price}</p>
+        <p className="text-[#2f3031] font-medium text-base md:text-lg">${price}</p>
       </div>
     </div>
   );

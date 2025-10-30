@@ -17,9 +17,9 @@ export default function CTA() {
     <section>
       {/* Overlay */}
       <div className="absolute inset-0"></div>
-      <div className="relative w-[75%] mx-auto">
+      <div className="relative w-full md:w-[85%] lg:w-[75%] mx-auto">
         <div className="px-4 md:px-8">
-          <h2 className="text-5xl font-thin text-[#2f3031] text-center">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-thin text-[#2f3031] text-center">
             Tu piel, tu mayor {" "}
             <span className="">
               <FlipWords words={words} className="text-[#2f3031]" />

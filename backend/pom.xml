@@ -87,6 +87,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <configuration>
+                    <jvmArguments>-Duser.timezone=UTC</jvmArguments>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
