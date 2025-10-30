@@ -1,10 +1,11 @@
 package com.synapsse.backend.dto;
 
-public record AuthResponse(
-        String token,
-        String email,
-        boolean isAdmin,
+import jakarta.validation.constraints.NotBlank;
+
+public record UpdateUserProfileRequest(
+        @NotBlank(message = "El nombre es obligatorio")
         String firstName,
+        @NotBlank(message = "El apellido es obligatorio")
         String lastName,
         String phone,
         String address,

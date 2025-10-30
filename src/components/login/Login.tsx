@@ -59,7 +59,17 @@ export default function Login() {
       
       // Guardar token y usuario
       authService.saveToken(response.token);
-      authService.saveUser({ email: response.email, isAdmin: response.isAdmin });
+      authService.saveUser({
+        email: response.email,
+        isAdmin: response.isAdmin,
+        firstName: response.firstName,
+        lastName: response.lastName,
+        phone: response.phone ?? "",
+        address: response.address ?? "",
+        city: response.city ?? "",
+        province: response.province ?? "",
+        postalCode: response.postalCode ?? "",
+      });
       
       // Verificar que se guardó correctamente
       const savedToken = authService.getToken();

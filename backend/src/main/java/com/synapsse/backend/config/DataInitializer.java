@@ -24,6 +24,13 @@ public class DataInitializer {
                 User admin = new User();
                 admin.setEmail("admin@synapsse.com");
                 admin.setPassword(passwordEncoder.encode("Admin1234"));
+                admin.setFirstName("Admin");
+                admin.setLastName("Synapsse");
+                admin.setPhone("+54 11 0000-0000");
+                admin.setAddress("Av. Siempre Viva 123");
+                admin.setCity("Buenos Aires");
+                admin.setProvince("CABA");
+                admin.setPostalCode("1000");
                 admin.setRoles(EnumSet.of(Role.ADMIN, Role.CUSTOMER));
                 userRepository.save(admin);
             }

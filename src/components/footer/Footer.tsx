@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="lg:flex lg:items-end lg:justify-between">
           <div className="w-full">
             <div className="flex justify-center">
-              <img src="/logo.png" alt="" className="w-[30%]"/>
+              <img src="/logo.png" alt="Synapsse" className="w-32 sm:w-40"/>
             </div>
 
             <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-[#535657] font-thin">

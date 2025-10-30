@@ -1,6 +1,9 @@
 package com.synapsse.backend.service;
 
+import com.synapsse.backend.dto.ChangePasswordRequest;
 import com.synapsse.backend.dto.RegisterRequest;
+import com.synapsse.backend.dto.UpdateUserProfileRequest;
+import com.synapsse.backend.dto.UserProfileResponse;
 import com.synapsse.backend.dto.UserSummary;
 import com.synapsse.backend.entity.Role;
 import com.synapsse.backend.entity.User;
@@ -32,6 +35,13 @@ public class UserService {
         User user = new User();
         user.setEmail(request.email());
         user.setPassword(passwordEncoder.encode(request.password()));
+        user.setFirstName(request.firstName());
+        user.setLastName(request.lastName());
+        user.setPhone(request.phone());
+        user.setAddress(request.address());
+        user.setCity(request.city());
+        user.setProvince(request.province());
+        user.setPostalCode(request.postalCode());
         if (request.admin()) {
             user.setRoles(EnumSet.of(Role.ADMIN, Role.CUSTOMER));
         } else {
@@ -43,8 +53,62 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<UserSummary> listUsers() {
         return userRepository.findAll().stream()
-                .map(user -> new UserSummary(user.getId(), user.getEmail(), user.getRoles(), user.getCreatedAt()))
+                .map(user -> new UserSummary(
+                        user.getId(),
+                        user.getEmail(),
+                        user.getFirstName(),
+                        user.getLastName(),
+                        user.getRoles(),
+                        user.getCreatedAt()))
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public UserProfileResponse getProfile(String email) {
+        User user = findByEmail(email);
+        return mapToProfile(user);
+    }
+
+    @Transactional
+    public UserProfileResponse updateProfile(String email, UpdateUserProfileRequest request) {
+        User user = findByEmail(email);
+        user.setFirstName(request.firstName());
+        user.setLastName(request.lastName());
+        user.setPhone(request.phone());
+        user.setAddress(request.address());
+        user.setCity(request.city());
+        user.setProvince(request.province());
+        user.setPostalCode(request.postalCode());
+        return mapToProfile(userRepository.save(user));
+    }
+
+    @Transactional
+    public void changePassword(String email, ChangePasswordRequest request) {
+        User user = findByEmail(email);
+        if (!passwordEncoder.matches(request.currentPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("La contraseña actual no es correcta");
+        }
+        if (!request.newPassword().equals(request.confirmPassword())) {
+            throw new IllegalArgumentException("Las contraseñas nuevas no coinciden");
+        }
+        if (request.newPassword().length() < 8) {
+            throw new IllegalArgumentException("La nueva contraseña debe tener al menos 8 caracteres");
+        }
+        user.setPassword(passwordEncoder.encode(request.newPassword()));
+        userRepository.save(user);
+    }
+
+    private UserProfileResponse mapToProfile(User user) {
+        return new UserProfileResponse(
+                user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getAddress(),
+                user.getCity(),
+                user.getProvince(),
+                user.getPostalCode()
+        );
     }
 
     @Transactional(readOnly = true)

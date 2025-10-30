@@ -1,9 +1,7 @@
 package com.synapsse.backend.dto;
 
-public record AuthResponse(
-        String token,
+public record UserProfileResponse(
         String email,
-        boolean isAdmin,
         String firstName,
         String lastName,
         String phone,
